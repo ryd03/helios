@@ -43,14 +43,14 @@ const Home = ({ navigation }) => {
   const cloudiness =weather?.clouds?.all; // Random cloudiness between 0% and 100%
   const weatherMain = weather?.weather[0]?.main;
 
-  const maxSolarPower = 180; // Peak solar power when there's no cloudiness
-  const minSolarPower = 20;  // Minimal solar power when fully cloudy
+  const maxSolarPower = 80; // Peak solar power when there's no cloudiness
+  const minSolarPower = 10;  // Minimal solar power when fully cloudy
 
   // Calculate solar power based on cloudiness
   const solarPower = (maxSolarPower - ((maxSolarPower - minSolarPower) * (cloudiness / 100))).toFixed(0);
   const maxBattery = 100; // Maximum battery percentage
   const minBattery = 20;  // Minimum battery percentage
-
+  const sp = Math.floor(Math.random() * 71) + 10;
   // Calculate battery percentage based on solar power
   const batteryPercentage = (minBattery + ((solarPower / maxSolarPower) * (maxBattery - minBattery))).toFixed(0);
 
@@ -242,7 +242,7 @@ const Home = ({ navigation }) => {
               <IonIcon name="sparkles-outline" color={COLORS.white} size={20} />
               <Text style={styles.solarText}> Solar Prediction</Text>
             </View>
-            <Text style={styles.solarValue}>100 kWh</Text>
+            <Text style={styles.solarValue}>{sp} kWh</Text>
           </View>
         </View>
 
